@@ -5,5 +5,40 @@
 # Health Check
 GET {{baseUrl}}/health
 
+###
+
 # Get Rooms
+# @name getRooms
 GET {{baseUrl}}/rooms
+
+###
+
+# Post a New Room
+# @name createRoom
+POST {{baseUrl}}/rooms 
+Content-Type: application/json
+
+{
+  "name": "Sala Teste",
+  "description": "Essa é uma sala de teste"
+}
+
+###
+
+@roomId = {{createRoom.response.body.$.roomId}}
+
+###
+
+# Get Room questions
+GET {{baseUrl}}/rooms/{{roomId}}/questions
+
+### 
+
+# Post a New Question
+# @name createQuestion
+POST {{baseUrl}}/rooms/{{roomId}}/questions
+Content-Type: application/json
+
+{
+  "question": "Qual é a capital da França?"
+}
